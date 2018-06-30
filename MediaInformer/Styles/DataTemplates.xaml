@@ -1,0 +1,75 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MediaInformer.Styles"
+    xmlns:datatemplate="using:MediaInformer.Helpers.TemplateSelectors">
+
+    <!-- MainPage Templates-->
+
+    <DataTemplate x:Key="FileTemplate">
+        <Grid x:Name="MainGrid">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Rectangle Grid.RowSpan="2"
+                       Width="250"
+                       Height="150"
+                       Fill="{StaticResource ComboBoxItemSelectedBackgroundThemeBrush}"/>
+
+            <FontIcon Grid.Row="0"
+                      Glyph="&#xEA69;"
+                      HorizontalAlignment="Center"
+                      VerticalAlignment="Center"
+                      Foreground="{StaticResource SystemControlForegroundChromeGrayBrush}"
+                      FontSize="80"/>
+
+
+            <TextBlock Grid.Row="1"
+                       HorizontalAlignment="Center"
+                       TextTrimming="CharacterEllipsis"
+                       Text="{Binding File.Name}"
+                       Margin="10,0"
+                       FontSize="16"/>
+        </Grid>
+    </DataTemplate>
+
+    <DataTemplate x:Key="AddFileTemplate">
+        <Grid x:Name="MainGrid">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Rectangle Grid.RowSpan="2"
+                       Width="250"
+                       Height="150"
+                       Fill="{StaticResource ComboBoxItemSelectedBackgroundThemeBrush}"/>
+
+            <FontIcon Grid.Row="0"
+                      Glyph="&#xECC8;"
+                      HorizontalAlignment="Center"
+                      VerticalAlignment="Center"
+                      Foreground="{StaticResource SystemControlForegroundChromeGrayBrush}"
+                      FontSize="80"
+                      FontWeight="SemiBold"/>
+
+            <TextBlock Grid.Row="1"
+                       Margin="0, 0, 0, 10"
+                       HorizontalAlignment="Center"
+                       TextTrimming="CharacterEllipsis"
+                       Text="ADD"                       
+                       FontSize="24"
+                       FontWeight="SemiBold"/>
+
+        </Grid>
+    </DataTemplate>
+
+    <DataTemplate x:Key="EmptyTemplate"/>
+
+    <datatemplate:MediaToolItemTemplate x:Key="MediaToolItemTemplateSelector"
+                                        EmptyTemplate="{StaticResource EmptyTemplate}"
+                                        FileTemplate ="{StaticResource FileTemplate}"
+                                        AddTemplate="{StaticResource AddFileTemplate}"/>
+</ResourceDictionary>
