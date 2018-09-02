@@ -62,6 +62,17 @@
             await this.WriteToFileAsync();
         }
 
+        public async Task<bool> IsFavoriteFileAsync(double id)
+        {
+            var result = false;
+            var items = await this.GetFavoriteFilesAsync();
+            var item = items.FirstOrDefault(x => x.Id == id);
+            if (item != null)
+            {
+                result = true;
+            }
+            return result;
+        }
 
 
         private async Task WriteToFileAsync()

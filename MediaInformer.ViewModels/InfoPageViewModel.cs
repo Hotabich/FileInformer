@@ -18,9 +18,12 @@ namespace MediaInformer.ViewModels
             this.InitializeCommand = new RelayCommand(this.InitializeExecute);
             this.SaveInfoCommand = new RelayCommand(this.SaveInfoExecute, this.SaveInfoCanExecute);
             this.AddToFavoriteCommand = new RelayCommand(this.AddToFavoriteExecute, this.CanAddToFavoriteExecute);
+            this.DeleteFromFavoriteCommand = new RelayCommand(this.DeleteFromFavoriteExecute);
         }
 
         public string Info { get; set; }
+
+        public bool IsFavorite { get; set; }
 
         public bool CanAddToFavoriteExecute
         {
@@ -34,6 +37,8 @@ namespace MediaInformer.ViewModels
         public RelayCommand SaveInfoCommand { get; private set; }
 
         public RelayCommand AddToFavoriteCommand { get; private set; }
+
+        public RelayCommand DeleteFromFavoriteCommand { get; private set; }
 
 
 
@@ -53,6 +58,7 @@ namespace MediaInformer.ViewModels
                 this.Info = response.Result;
                 this.CurrentItem = parameter;
             }
+            await this.IsFavoriteFile();
             this.RaisePropertyChanged(() => this.Info);
             this.BusyCount--;
         }
@@ -70,6 +76,17 @@ namespace MediaInformer.ViewModels
         {
             this.CurrentItem.IsFavorite = true;
             await FavoriteProvider.Instance.AddToFavoriteAsync(this.CurrentItem);
+        }
+
+        private async void DeleteFromFavoriteExecute()
+        {
+            this.CurrentItem.IsFavorite = false;
+            await FavoriteProvider.Instance.DeleteFromFavoriteAsync(this.CurrentItem);
+        }
+
+        private async Task IsFavoriteFile()
+        {
+            this.IsFavorite = await FavoriteProvider.Instance.IsFavoriteFileAsync(this.CurrentItem.Id);
         }
     }
 }
