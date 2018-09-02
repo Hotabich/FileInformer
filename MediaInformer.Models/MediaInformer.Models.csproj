@@ -106,10 +106,16 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="AppManager\AppConfig.cs" />
+    <Compile Include="Enums\ErrorStatus.cs" />
+    <Compile Include="Enums\PopupNavigationSource.cs" />
+    <Compile Include="Error.cs" />
     <Compile Include="Interfaces\INavigationProvider.cs" />
     <Compile Include="Enums\NavigationSource.cs" />
     <Compile Include="MediaToolItem.cs" />
+    <Compile Include="Navigation\Peremeters\PopupChangedEventArgs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Response.cs" />
     <EmbeddedResource Include="Properties\MediaInformer.Models.rd.xml" />
   </ItemGroup>
   <ItemGroup>

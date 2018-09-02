@@ -5,11 +5,41 @@
     xmlns:local="using:MediaInformer.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:MediaInformer.Controls" 
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400">
 
     <Grid>
-        <Frame x:Name="rootFrame"/>
+        <Grid.Background>
+            <ImageBrush ImageSource="../Assets/BackGroundImage.jpg"
+                        Stretch="UniformToFill"/>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <controls:NavigationPanel x:Name="NevigationPanel"
+                                  Grid.Row="0"
+                                  Height="50"/>
+
+        <Frame x:Name="rootFrame"
+               Grid.Row="1"/>
+
+        <Grid x:Name="PopupContentBackground"
+              Grid.RowSpan="2"
+              Visibility="Collapsed"              
+              HorizontalAlignment="Stretch"
+              VerticalAlignment="Center" />
+
+        <ContentControl x:Name="PopupContentControl"
+                        Grid.RowSpan="2"
+                        Visibility="Collapsed"
+                        VerticalContentAlignment="Center"
+                        HorizontalContentAlignment="Stretch"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Center" />
+
     </Grid>
 </UserControl>

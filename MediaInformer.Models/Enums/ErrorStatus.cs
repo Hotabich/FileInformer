@@ -1,4 +1,4 @@
-﻿namespace MediaInformer.MediaTool.Interfaces
+﻿namespace MediaInformer.Models.Enums
 {
     public enum ErrorStatus
     {

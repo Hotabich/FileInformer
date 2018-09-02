@@ -1,12 +1,24 @@
-﻿namespace MediaInformer.Models
+﻿using System.Runtime.Serialization;
+
+namespace MediaInformer.Models
 {
-    using Windows.Storage;
+
+    [DataContract]
     public class MediaToolItem
     {
-        public int Id { get; set; }
+        [DataMember]
+        public double Id { get; set; }
 
+        [DataMember]
         public bool IsEmpty { get; set; }
 
-        public StorageFile File { get; set; }
+        [DataMember]
+        public bool IsFavorite { get; set; }
+
+        [DataMember]
+        public string FileName { get; set; }
+
+        [DataMember]
+        public string FilePath { get; set; }
     }
 }

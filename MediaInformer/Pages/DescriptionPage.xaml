@@ -1,0 +1,28 @@
+﻿<Page
+    x:Class="MediaInformer.Pages.DescriptionPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MediaInformer.Pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid Background="White">
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <TextBlock Text="{Binding Description}"
+                   HorizontalAlignment="Left"
+                   FontSize="16"
+                   FontFamily="Arial" 
+                   TextWrapping="Wrap"
+                   Foreground="Black"/>
+        </ScrollViewer>
+        <ProgressRing HorizontalAlignment="Center"
+                      VerticalAlignment="Center"
+                      IsActive="True"
+                      Visibility="{Binding IsBusy}"
+                      Width="100"
+                      Height="100"
+                      Foreground="{StaticResource DarkBlueBrush}"/>
+    </Grid>
+</Page>

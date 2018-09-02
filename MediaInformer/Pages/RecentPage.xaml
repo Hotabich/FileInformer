@@ -5,10 +5,83 @@
     xmlns:local="using:MediaInformer.Pages"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:interact="using:Microsoft.Xaml.Interactivity"
+    xmlns:controls="using:MediaInformer.Controls"
+    xmlns:extensions="using:MediaInformer.Helpers.Extensions"   
+    xmlns:behaviors ="using:MediaInformer.Helpers.Behaviors"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
-
+    <Grid Background="Transparent">
+        <GridView Grid.Row="1"                   
+                  ItemsSource="{Binding Files}"                  
+                  SelectionMode="{Binding SelectionMode}" 
+                  SelectedItem="{Binding CurrentItem, Mode=TwoWay}"
+                  IsItemClickEnabled="True"
+                  ItemContainerStyleSelector="{StaticResource MainGridViewStyleSelector}"
+                  ItemTemplateSelector="{StaticResource MediaToolItemTemplateSelector}" 
+                  extensions:ListViewExtensions.SelectedValues="{Binding SelectedItems, Mode=TwoWay}">
+            <interact:Interaction.Behaviors>
+                <behaviors:ItemClickBehavior ClickCommand="{Binding ItemClickCommand}"/>
+            </interact:Interaction.Behaviors>
+        </GridView>
+        <ProgressRing HorizontalAlignment="Center"
+                      VerticalAlignment="Center"
+                      IsActive="True"
+                      Visibility="{Binding IsBusy}"
+                      Width="100"
+                      Height="100"
+                      Foreground="{StaticResource DarkBlueBrush}"/>
     </Grid>
+
+    <Page.BottomAppBar>
+
+        <CommandBar x:Name="AppCommandBar">
+
+            <CommandBar.PrimaryCommands>
+
+                <controls:AppBarSwitchButton Style="{StaticResource AppBarToggleButtonRevealStyle}"
+                                             IsChecked="{Binding IsSelectionMode, Mode=TwoWay}"
+                                             IsEnabled="{Binding IsItemsFileEmpty}"                                               
+                                             LabelChecked="Cancel"
+                                             LabelUnchecked="Select">
+                    <controls:AppBarSwitchButton.IconUnchecked>
+                        <FontIcon Glyph="&#xE762;"/>
+                    </controls:AppBarSwitchButton.IconUnchecked>
+                    <controls:AppBarSwitchButton.IconChecked>
+                        <FontIcon Glyph="&#xE762;"/>
+                    </controls:AppBarSwitchButton.IconChecked>
+                    <controls:AppBarSwitchButton.Icon>
+                        <FontIcon Glyph="&#xE762;"/>
+                    </controls:AppBarSwitchButton.Icon>
+
+                </controls:AppBarSwitchButton>
+
+                <AppBarButton Icon="SelectAll"
+                              Label="select all"
+                              extensions:MultiVisibilityExtension.FirstDependencyContent="{Binding IsSelectedItemEmpty, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter='invert'}"
+                              extensions:MultiVisibilityExtension.SecondDependencyContent="{Binding IsSelectionMode, Converter={StaticResource BooleanToVisibilityConverter}}"
+                              Command="{Binding SelectAllCommand}"/>
+
+                <AppBarButton Icon="ClearSelection"
+                              Label="deselect all"
+                              extensions:MultiVisibilityExtension.FirstDependencyContent="{Binding IsSelectedItemEmpty, Converter={StaticResource BooleanToVisibilityConverter}}"
+                              extensions:MultiVisibilityExtension.SecondDependencyContent="{Binding IsSelectionMode, Converter={StaticResource BooleanToVisibilityConverter}}"
+                              Command="{Binding DeselectAllCommand}"/>
+
+                <AppBarButton Icon="Delete"
+                              Visibility="{Binding IsSelectedItemEmpty, Converter={StaticResource BooleanToVisibilityConverter}}"
+                              Label="delete"
+                              Command="{Binding DeleteCommand}"/>
+
+            </CommandBar.PrimaryCommands>
+
+            <CommandBar.SecondaryCommands>
+
+                <AppBarButton Label="Setting"/>
+
+            </CommandBar.SecondaryCommands>
+
+        </CommandBar>
+    </Page.BottomAppBar>
 </Page>

@@ -2,13 +2,29 @@
     x:Class="MediaInformer.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:MediaInformer">
+    xmlns:resources="using:MediaInformer.Resources"
+    xmlns:viewModels="using:MediaInformer.ViewModels"
+    xmlns:converter="using:MediaInformer.Helpers.Converters">
 
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Styles/Brushes.xaml"/>
                 <ResourceDictionary Source="/Styles/DataTemplates.xaml"/>
+                <ResourceDictionary Source="/Styles/Buttons.xaml"/>
+                <ResourceDictionary Source="/Styles/Common.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+
+            <!--Locator-->
+            <viewModels:ViewModelsLocator x:Key="Locator"/>
+
+            <!--Localization-->
+            <resources:LocalizedStrings x:Key="LocalizedStrings"/>
+
+            <!--Converters-->
+            <converter:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+            <converter:NavigationSoursToThicknessConverter x:Key="NavigationSoursToThicknessConverter"/>
+
         </ResourceDictionary>
     </Application.Resources>
 

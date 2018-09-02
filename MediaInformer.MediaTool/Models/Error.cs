@@ -1,6 +1,6 @@
 ﻿namespace MediaInformer.MediaTool.Models
 {
-    using Interfaces;
+    using Enum;
     public class Error
     {
         public string Message { get; set; }

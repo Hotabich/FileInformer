@@ -11,6 +11,7 @@
         bool CanGoBack { get; }
         Frame Frame { get; set; }
         bool CanGoForward { get; }
+        object NavigationParameter { get; set; }
         void Navigate(Enum sourcePage);
         void CheckBackBattonVisibility();
         void Navigate(Enum sourcePage, object parameter);

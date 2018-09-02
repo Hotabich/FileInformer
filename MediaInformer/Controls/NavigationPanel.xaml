@@ -1,0 +1,68 @@
+﻿<UserControl
+    x:Class="MediaInformer.Controls.NavigationPanel"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MediaInformer.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:pages="using:MediaInformer.Models.Enums"
+    mc:Ignorable="d"
+    d:DesignHeight="50"
+    d:DesignWidth="500">
+    <UserControl.Resources>
+        <pages:NavigationSource x:Key="MainPage">MainPage</pages:NavigationSource>
+        <pages:NavigationSource x:Key="RecentPage">RecentPage</pages:NavigationSource>
+        <pages:NavigationSource x:Key="FavoritePage">FavoritePage</pages:NavigationSource>
+        <pages:NavigationSource x:Key="DescriptionPage">DescriptionPage</pages:NavigationSource>
+    </UserControl.Resources>
+
+    <Grid HorizontalAlignment="Stretch"
+          Background="{StaticResource DarkBlueBrush}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <local:NavigationButton x:Name="MainPageButton" Grid.Column="0"
+                                Label="Main"
+                                Icon="&#xE8FD;"
+                                FontSize="20"
+                                Command="{Binding NavigateToCommand}"
+                                CommandParameter="{StaticResource MainPage}"
+                                BorderThickness="{Binding CurrentPage, Converter={StaticResource NavigationSoursToThicknessConverter}, ConverterParameter={StaticResource MainPage}}"
+                                Style="{StaticResource NavigationButtonStyle}"/>
+
+        <local:NavigationButton x:Name="RecentPageButton"
+                                Grid.Column="1"
+                                Label="Recent"
+                                Icon="&#xE823;"
+                                FontSize="20"      
+                                BorderThickness="{Binding CurrentPage, Converter={StaticResource NavigationSoursToThicknessConverter}, ConverterParameter={StaticResource RecentPage}}"
+                                Command="{Binding NavigateToCommand}"
+                                CommandParameter="{StaticResource RecentPage}"
+                                Style="{StaticResource NavigationButtonStyle}"/>
+
+        <local:NavigationButton x:Name="FavoritePageButton"
+                                Grid.Column="2"
+                                Label="Favorite"
+                                Icon="&#xE728;"
+                                FontSize="20" 
+                                BorderThickness="{Binding CurrentPage, Converter={StaticResource NavigationSoursToThicknessConverter}, ConverterParameter={StaticResource FavoritePage}}"
+                                Command="{Binding NavigateToCommand}"
+                                CommandParameter="{StaticResource FavoritePage}"
+                                Style="{StaticResource NavigationButtonStyle}"/>
+
+        <local:NavigationButton x:Name="DescriptionPageButton"
+                                Grid.Column="3"
+                                Label="Description"
+                                Icon="&#xE946;"
+                                FontSize="20"            
+                                BorderThickness="{Binding CurrentPage, Converter={StaticResource NavigationSoursToThicknessConverter}, ConverterParameter={StaticResource DescriptionPage}}"
+                                Command="{Binding NavigateToCommand}"
+                                CommandParameter="{StaticResource DescriptionPage}"
+                                Style="{StaticResource NavigationButtonStyle}"/>
+
+    </Grid>
+</UserControl>

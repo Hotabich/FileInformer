@@ -16,6 +16,8 @@
 
         public Frame Frame { get; set; }
 
+        public object NavigationParameter { get; set; }
+
         public bool CanGoBack => Frame.CanGoBack;
 
         public bool CanGoForward => Frame.CanGoForward;
@@ -55,6 +57,10 @@
         {
             if (this.navigationMapper.ContainsKey(sourcePage))
             {
+                if (parameter != null)
+                {
+                    this.NavigationParameter = parameter;
+                }
                 Frame.Navigate(navigationMapper[sourcePage], parameter);
             }
             this.CheckBackBattonVisibility();

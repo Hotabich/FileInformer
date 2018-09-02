@@ -106,19 +106,44 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Providers\CultureProvider.cs" />
+    <Compile Include="Providers\FavoriteProvider.cs" />
     <Compile Include="Providers\NavigationProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Providers\PopupProvider.cs" />
+    <Compile Include="Providers\RecentProvider.cs" />
+    <Compile Include="Providers\ServiceConnectionProvider.cs" />
+    <Compile Include="Providers\ShareProvider.cs" />
+    <Compile Include="Providers\WindowsHelloProvider.cs" />
     <EmbeddedResource Include="Properties\MediaInformer.DataAccets.rd.xml" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.1.5</Version>
     </PackageReference>
+    <PackageReference Include="MvvmLight">
+      <Version>5.4.1</Version>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>11.0.2</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MediaInformer.DI\MediaInformer.DI.csproj">
+      <Project>{1a095ee2-9416-493b-84a1-07f139da0146}</Project>
+      <Name>MediaInformer.DI</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MediaInformer.Models\MediaInformer.Models.csproj">
       <Project>{e1624432-cf7f-4254-b833-22385fb8fee4}</Project>
       <Name>MediaInformer.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MediaInformer.Resources\MediaInformer.Resources.csproj">
+      <Project>{EAFFE347-BDDD-4300-B3D3-EEE8CDB3076B}</Project>
+      <Name>MediaInformer.Resources</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MediaInformer.Storage\MediaInformer.Storage.csproj">
+      <Project>{12d14a3d-6d8b-4c4a-b45b-8854bbfd68de}</Project>
+      <Name>MediaInformer.Storage</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">

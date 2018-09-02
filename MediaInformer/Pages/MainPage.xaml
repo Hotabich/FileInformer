@@ -3,38 +3,82 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:MediaInformer.Pages"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"    
+    xmlns:behaviors ="using:MediaInformer.Helpers.Behaviors"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
-    <Grid>
-        <Grid.Background>
-            <ImageBrush ImageSource="../Assets/BackGroundImage.jpg"
-                        Stretch="UniformToFill"/>
-        </Grid.Background>
-
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-
-        <Button Grid.Row="0"
-                Content="Add"
-                Command="{Binding AddFilesCommand}"/>
-
-        <GridView Grid.Row="1" 
-                  ItemsSource="{Binding Files}"
-                  SelectionMode="Multiple"                  
-                  ItemTemplateSelector="{StaticResource MediaToolItemTemplateSelector}">
-            <GridView.ItemContainerStyle>
-                <Style TargetType="GridViewItem">
-                    <Setter Property="Margin" Value="10,5"/>
-                    <Setter Property="MaxWidth" Value="250"/>
-                    <Setter Property="MaxHeight" Value="150"/>
-                </Style>
-            </GridView.ItemContainerStyle>
-        </GridView>
-
+    xmlns:interact="using:Microsoft.Xaml.Interactivity"
+    xmlns:interactcore="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:controls="using:MediaInformer.Controls" 
+    xmlns:extensions="using:MediaInformer.Helpers.Extensions"
+    mc:Ignorable="d">
+    <Grid Background="Transparent">
+        <GridView Grid.Row="1"                   
+                  ItemsSource="{Binding Files}"                  
+                  SelectionMode="{Binding SelectionMode}" 
+                  SelectedItem="{Binding CurrentItem, Mode=TwoWay}"
+                  IsItemClickEnabled="True"
+                  ItemContainerStyleSelector="{StaticResource MainGridViewStyleSelector}"
+                  ItemTemplateSelector="{StaticResource MediaToolItemTemplateSelector}"
+                  extensions:ListViewExtensions.SelectedValues="{Binding SelectedItems, Mode=TwoWay}">
+            <interact:Interaction.Behaviors>
+                <behaviors:ItemClickBehavior ClickCommand="{Binding ItemClickCommand}"/>
+            </interact:Interaction.Behaviors>
+        </GridView>       
     </Grid>
+
+    <Page.BottomAppBar>
+
+        <CommandBar x:Name="AppCommandBar">
+
+            <CommandBar.PrimaryCommands>
+
+                <controls:AppBarSwitchButton Style="{StaticResource AppBarToggleButtonRevealStyle}"
+                                             IsChecked="{Binding IsSelectionMode, Mode=TwoWay}"
+                                             IsEnabled="{Binding IsItemsFileEmpty}"                                               
+                                             LabelChecked="Cancel"
+                                             LabelUnchecked="Select">
+                    <controls:AppBarSwitchButton.IconUnchecked>
+                        <FontIcon Glyph="&#xE762;"/>
+                    </controls:AppBarSwitchButton.IconUnchecked>
+                    <controls:AppBarSwitchButton.IconChecked>
+                        <FontIcon Glyph="&#xE762;"/>
+                    </controls:AppBarSwitchButton.IconChecked>
+                    <controls:AppBarSwitchButton.Icon>
+                        <FontIcon Glyph="&#xE762;"/>
+                    </controls:AppBarSwitchButton.Icon>
+
+                </controls:AppBarSwitchButton>
+
+                <AppBarButton Icon="SelectAll"
+                              Label="select all"
+                              extensions:MultiVisibilityExtension.FirstDependencyContent="{Binding IsSelectedItemEmpty, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter='invert'}"
+                              extensions:MultiVisibilityExtension.SecondDependencyContent="{Binding IsSelectionMode, Converter={StaticResource BooleanToVisibilityConverter}}"
+                              Command="{Binding SelectAllCommand}"/>
+
+                <AppBarButton Icon="ClearSelection"
+                              Label="deselect all"
+                              extensions:MultiVisibilityExtension.FirstDependencyContent="{Binding IsSelectedItemEmpty, Converter={StaticResource BooleanToVisibilityConverter}}"
+                              extensions:MultiVisibilityExtension.SecondDependencyContent="{Binding IsSelectionMode, Converter={StaticResource BooleanToVisibilityConverter}}"
+                              Command="{Binding DeselectAllCommand}"/>
+
+                <AppBarButton Icon="Delete"
+                              Visibility="{Binding IsSelectedItemEmpty, Converter={StaticResource BooleanToVisibilityConverter}}"
+                              Label="delete"
+                              Command="{Binding DeleteCommand}"/>
+
+                <AppBarButton Icon="Add"                               
+                              Label="add"
+                              Command="{Binding AddFilesCommand}"/>
+
+            </CommandBar.PrimaryCommands>
+
+            <CommandBar.SecondaryCommands>
+
+                <AppBarButton Label="Setting"
+                              Command="{Binding ShowSettingsPopupCommand}"/>
+
+            </CommandBar.SecondaryCommands>
+
+        </CommandBar>
+    </Page.BottomAppBar>
 </Page>

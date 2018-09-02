@@ -3,6 +3,9 @@
     public enum NavigationSource
     {
         MainPage,
-        RecentPage
+        RecentPage,
+        InfoPage,
+        FavoritePage,
+        DescriptionPage
     }
 }
