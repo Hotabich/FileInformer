@@ -1,14 +1,11 @@
-﻿using System.Runtime.Serialization;
-
-namespace MediaInformer.Models
+﻿namespace MediaInformer.Models
 {
+    using System;
+    using System.Runtime.Serialization;
 
     [DataContract]
     public class MediaToolItem
     {
-        [DataMember]
-        public double Id { get; set; }
-
         [DataMember]
         public bool IsEmpty { get; set; }
 

@@ -35,14 +35,12 @@
         public async Task AddToFavoriteAsync(MediaToolItem item)
         {
             var items = await this.GetFavoriteFilesAsync();
-            var maxId = DefaultID;
-            if (items.Count > 0)
+            var file = items.FirstOrDefault(x => x.FilePath == item.FilePath);
+            if (file == null)
             {
-                maxId = items.Max(x => x.Id);
+                this.favoriteItems.Add(item);
+                await this.WriteToFileAsync();
             }
-            item.Id = maxId;
-            this.favoriteItems.Add(item);
-            await this.WriteToFileAsync();
         }
 
         public async Task DeleteFromFavoriteAsync(MediaToolItem item)
@@ -62,18 +60,17 @@
             await this.WriteToFileAsync();
         }
 
-        public async Task<bool> IsFavoriteFileAsync(double id)
+        public async Task<bool> IsFavoriteFileAsync(string path)
         {
             var result = false;
             var items = await this.GetFavoriteFilesAsync();
-            var item = items.FirstOrDefault(x => x.Id == id);
+            var item = items.FirstOrDefault(x => x.FilePath == path);
             if (item != null)
             {
                 result = true;
             }
             return result;
         }
-
 
         private async Task WriteToFileAsync()
         {

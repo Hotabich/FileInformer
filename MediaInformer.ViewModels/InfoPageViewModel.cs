@@ -13,6 +13,7 @@ namespace MediaInformer.ViewModels
     public class InfoPageViewModel : BaseViewModel
     {
         private readonly IStorageProvider storageProvider = Factory.CommonFactory.GetInstance<IStorageProvider>();
+        private bool isFavorite;
         public InfoPageViewModel()
         {
             this.InitializeCommand = new RelayCommand(this.InitializeExecute);
@@ -23,7 +24,18 @@ namespace MediaInformer.ViewModels
 
         public string Info { get; set; }
 
-        public bool IsFavorite { get; set; }
+        public bool IsFavorite
+        {
+            get { return this.isFavorite; }
+            set
+            {
+                if (this.isFavorite != value)
+                {
+                    this.isFavorite = value;
+                    this.RaisePropertyChanged();
+                }
+            }
+        }
 
         public bool CanAddToFavoriteExecute
         {
@@ -74,19 +86,21 @@ namespace MediaInformer.ViewModels
 
         private async void AddToFavoriteExecute()
         {
-            this.CurrentItem.IsFavorite = true;
             await FavoriteProvider.Instance.AddToFavoriteAsync(this.CurrentItem);
+            this.CurrentItem.IsFavorite = true;
+            this.IsFavorite = true;
         }
 
         private async void DeleteFromFavoriteExecute()
         {
-            this.CurrentItem.IsFavorite = false;
             await FavoriteProvider.Instance.DeleteFromFavoriteAsync(this.CurrentItem);
+            this.CurrentItem.IsFavorite = false;
+            this.IsFavorite = false;
         }
 
         private async Task IsFavoriteFile()
         {
-            this.IsFavorite = await FavoriteProvider.Instance.IsFavoriteFileAsync(this.CurrentItem.Id);
+            this.IsFavorite = await FavoriteProvider.Instance.IsFavoriteFileAsync(this.CurrentItem.FilePath);
         }
     }
 }

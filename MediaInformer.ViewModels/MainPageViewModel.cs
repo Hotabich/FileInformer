@@ -22,7 +22,7 @@
         public MainPageViewModel()
         {
             this.files.Add(new MediaToolItem { IsEmpty = true });
-            this.AddFilesCommand = new RelayCommand(this.AddFilesExecuteSync);
+            this.AddFilesCommand = new RelayCommand(this.AddFilesExecuteAsync);
         }
 
         public RelayCommand AddFilesCommand { get; private set; }
@@ -44,7 +44,7 @@
         {
             if (item != null && item.IsEmpty)
             {
-                this.AddFilesExecuteSync();
+                this.AddFilesExecuteAsync();
             }
             else
             {
@@ -53,7 +53,7 @@
             }
         }
 
-        private async void AddFilesExecuteSync()
+        private async void AddFilesExecuteAsync()
         {
             this.BusyCount++;
 
@@ -73,16 +73,6 @@
             }
 
             this.BusyCount--;
-        }
-
-        private double GetMaxItemsId()
-        {
-            double id = 0;
-            if (this.Files.Count > 0)
-            {
-                id = this.Files.Max(x => x.Id);
-            }
-            return id;
         }
     }
 }

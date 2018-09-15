@@ -35,14 +35,12 @@
         public async Task AddToRecentAsync(MediaToolItem item)
         {
             var items = await this.GetRecentFilesAsync();
-            var maxId = DefaultID;
-            if (items.Count > 0)
+            var file = items.FirstOrDefault(x => x.FilePath == item.FilePath);
+            if (file == null)
             {
-                maxId = items.Max(x => x.Id);
+                this.recentItems.Add(item);
+                await this.WriteToFileAsync();
             }
-            item.Id = maxId;
-            this.recentItems.Add(item);
-            await this.WriteToFileAsync();
         }
 
         public async Task DeleteFromRecentAsync(MediaToolItem item)

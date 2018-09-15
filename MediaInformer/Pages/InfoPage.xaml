@@ -43,12 +43,12 @@
                               Label="share"/>
 
                 <AppBarButton Icon="Favorite"
-                              Visibility="{Binding IsFavorite, Converter={StaticResource BooleanToVisibilityConverter}}"
+                              Visibility="{Binding IsFavorite, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter='invert'}"
                               Command="{Binding AddToFavoriteCommand}"                              
                               Label="add to favorite"/>
 
                 <AppBarButton Icon="UnFavorite"                             
-                              Visibility="{Binding IsFavorite, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter='invert'}"
+                              Visibility="{Binding IsFavorite, Converter={StaticResource BooleanToVisibilityConverter}}"
                               Command="{Binding DeleteFromFavoriteCommand}"
                               Label="remove from favorite"
                                Foreground="{StaticResource DarkBlueBrush}"/>
