@@ -54,6 +54,10 @@
                                Foreground="{StaticResource DarkBlueBrush}"/>
 
             </CommandBar.PrimaryCommands>
+            <CommandBar.SecondaryCommands>
+                <AppBarButton Label="{Binding Source={StaticResource LocalizedStrings}, Path=CommonResources.SettingsText}"
+                              Command="{Binding ShowSettingsPopupCommand}"/>
+            </CommandBar.SecondaryCommands>
 
         </CommandBar>
     </Page.BottomAppBar>

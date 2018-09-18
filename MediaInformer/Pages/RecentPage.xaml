@@ -78,7 +78,8 @@
 
             <CommandBar.SecondaryCommands>
 
-                <AppBarButton Label="Setting"/>
+                <AppBarButton Label="{Binding Source={StaticResource LocalizedStrings}, Path=CommonResources.SettingsText}"
+                              Command="{Binding ShowSettingsPopupCommand}"/>
 
             </CommandBar.SecondaryCommands>
 

@@ -60,7 +60,7 @@
                     Orientation="Horizontal">
             <TextBlock Grid.Row="0"
                        Foreground="{StaticResource DarkBlueBrush}"
-                       Text="Language"  
+                       Text="{Binding  Source={StaticResource LocalizedStrings}, Path=CommonResources.LanguageText}"  
                        FontSize="20"
                        Margin="0, 0, 10, 0"
                        HorizontalAlignment="Left"/>

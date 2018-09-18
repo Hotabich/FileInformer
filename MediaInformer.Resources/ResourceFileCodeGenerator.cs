@@ -45,6 +45,61 @@ namespace MediaInformer.Resources
         }
 
 		/// <summary>
+        /// Gets a localized string similar to "Language"
+        /// </summary>
+		public static string LanguageText
+        {
+            get
+            {
+                return resourceProvider.GetString("LanguageText");
+            }
+        }
+
+		/// <summary>
+        /// Gets a localized string similar to "Description"
+        /// </summary>
+		public static string NavigationPanelDescriptionButtonText
+        {
+            get
+            {
+                return resourceProvider.GetString("NavigationPanelDescriptionButtonText");
+            }
+        }
+
+		/// <summary>
+        /// Gets a localized string similar to "Favorite"
+        /// </summary>
+		public static string NavigationPanelFavoriteButtonText
+        {
+            get
+            {
+                return resourceProvider.GetString("NavigationPanelFavoriteButtonText");
+            }
+        }
+
+		/// <summary>
+        /// Gets a localized string similar to "Main"
+        /// </summary>
+		public static string NavigationPanelMainButtonText
+        {
+            get
+            {
+                return resourceProvider.GetString("NavigationPanelMainButtonText");
+            }
+        }
+
+		/// <summary>
+        /// Gets a localized string similar to "Recent"
+        /// </summary>
+		public static string NavigationPanelRecentButtonText
+        {
+            get
+            {
+                return resourceProvider.GetString("NavigationPanelRecentButtonText");
+            }
+        }
+
+		/// <summary>
         /// Gets a localized string similar to "Settings"
         /// </summary>
 		public static string SettingsText

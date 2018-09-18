@@ -120,6 +120,21 @@
   <data name="AboutText" xml:space="preserve">
     <value>About</value>
   </data>
+  <data name="LanguageText" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="NavigationPanelDescriptionButtonText" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="NavigationPanelFavoriteButtonText" xml:space="preserve">
+    <value>Favorite</value>
+  </data>
+  <data name="NavigationPanelMainButtonText" xml:space="preserve">
+    <value>Main</value>
+  </data>
+  <data name="NavigationPanelRecentButtonText" xml:space="preserve">
+    <value>Recent</value>
+  </data>
   <data name="SettingsText" xml:space="preserve">
     <value>Settings</value>
   </data>

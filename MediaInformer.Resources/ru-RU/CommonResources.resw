@@ -123,4 +123,19 @@
   <data name="SettingsText" xml:space="preserve">
     <value>Настройки</value>
   </data>
+  <data name="NavigationPanelDescriptionButtonText" xml:space="preserve">
+    <value>Описание</value>
+  </data>
+  <data name="NavigationPanelFavoriteButtonText" xml:space="preserve">
+    <value>Избранные</value>
+  </data>
+  <data name="NavigationPanelMainButtonText" xml:space="preserve">
+    <value>Главные</value>
+  </data>
+  <data name="NavigationPanelRecentButtonText" xml:space="preserve">
+    <value>Недавние</value>
+  </data>
+  <data name="LanguageText" xml:space="preserve">
+    <value>Язык</value>
+  </data>
 </root>

@@ -25,4 +25,15 @@
                       Height="100"
                       Foreground="{StaticResource DarkBlueBrush}"/>
     </Grid>
+    <Page.BottomAppBar>
+
+        <CommandBar x:Name="AppCommandBar">           
+
+            <CommandBar.SecondaryCommands>
+                <AppBarButton Label="{Binding Source={StaticResource LocalizedStrings}, Path=CommonResources.SettingsText}"
+                              Command="{Binding ShowSettingsPopupCommand}"/>
+            </CommandBar.SecondaryCommands>
+
+        </CommandBar>
+    </Page.BottomAppBar>
 </Page>

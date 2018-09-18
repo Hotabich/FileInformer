@@ -26,7 +26,7 @@
         </Grid.ColumnDefinitions>
 
         <local:NavigationButton x:Name="MainPageButton" Grid.Column="0"
-                                Label="Main"
+                                Label="{Binding Source={StaticResource LocalizedStrings}, Path=CommonResources.NavigationPanelMainButtonText}"
                                 Icon="&#xE8FD;"
                                 FontSize="20"
                                 Command="{Binding NavigateToCommand}"
@@ -36,7 +36,7 @@
 
         <local:NavigationButton x:Name="RecentPageButton"
                                 Grid.Column="1"
-                                Label="Recent"
+                                Label="{Binding Source={StaticResource LocalizedStrings}, Path=CommonResources.NavigationPanelRecentButtonText}"
                                 Icon="&#xE823;"
                                 FontSize="20"      
                                 BorderThickness="{Binding CurrentPage, Converter={StaticResource NavigationSoursToThicknessConverter}, ConverterParameter={StaticResource RecentPage}}"
@@ -46,7 +46,7 @@
 
         <local:NavigationButton x:Name="FavoritePageButton"
                                 Grid.Column="2"
-                                Label="Favorite"
+                                Label="{Binding Source={StaticResource LocalizedStrings}, Path=CommonResources.NavigationPanelFavoriteButtonText}"
                                 Icon="&#xE728;"
                                 FontSize="20" 
                                 BorderThickness="{Binding CurrentPage, Converter={StaticResource NavigationSoursToThicknessConverter}, ConverterParameter={StaticResource FavoritePage}}"
@@ -56,7 +56,7 @@
 
         <local:NavigationButton x:Name="DescriptionPageButton"
                                 Grid.Column="3"
-                                Label="Description"
+                                Label="{Binding Source={StaticResource LocalizedStrings}, Path=CommonResources.NavigationPanelDescriptionButtonText}"
                                 Icon="&#xE946;"
                                 FontSize="20"            
                                 BorderThickness="{Binding CurrentPage, Converter={StaticResource NavigationSoursToThicknessConverter}, ConverterParameter={StaticResource DescriptionPage}}"
